@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour
 {
+    public static float bottomY = -20f;
+
     const int LOOKBACK_COUNT = 10;
 
     [SerializeField]
@@ -59,7 +61,13 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    
+    void Update(){
+
+        //delete projectile if it falls off map to prevent it perpetually falling
+        if (transform.position.y < bottomY){
+            Destroy (this.gameObject);
+        }
+    }
 
     
 }
