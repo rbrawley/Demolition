@@ -9,6 +9,7 @@ public class Slingshot : MonoBehaviour{
     [SerializeField] private Transform leftArm;
 
     [SerializeField] private Transform rightArm;
+    [SerializeField] private AudioClip rubberClip;
 
     [Header("Inscribed")]
     public GameObject                   projectilePrefab;
@@ -91,7 +92,7 @@ public class Slingshot : MonoBehaviour{
         Vector3 projPos = launchPos+mouseDelta;
         projectile.transform.position = projPos;
 
-        //test
+        //test 
         rubber.SetPosition(1, projPos);
 
         if (Input.GetMouseButtonUp(0))
@@ -108,6 +109,7 @@ public class Slingshot : MonoBehaviour{
             //add a projectileline to the projectile
             Instantiate<GameObject>(projLinePrefab, projectile.transform);
             projectile = null;
+            SFXManager.S.PlaySFX(rubberClip, transform, 1f);
             MissionDemolition.SHOT_FIRED();
         }
     }
