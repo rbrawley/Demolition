@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public enum GameMode
 {
@@ -92,12 +94,15 @@ public class MissionDemolition : MonoBehaviour
     void NextLevel()
     {
         level++;
-        if (level == levelMax)
+        if (level >= levelMax)
         {
-            level = 0;
-            shotsTaken = 0;
+            HighScore.TRY_SET_HIGH_SCORE(shotsTaken);
+            SceneManager.LoadScene("_Game_Over");
+            //level = 0;
+            //shotsTaken = 0;
+
         }
-        StartLevel();
+        else{StartLevel();}
     }
 
     //static method that allows code anywehre to incremet shotsTaken
