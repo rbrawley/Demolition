@@ -97,6 +97,7 @@ public class MissionDemolition : MonoBehaviour
         if (level >= levelMax)
         {
             HighScore.TRY_SET_HIGH_SCORE(shotsTaken);
+            PlayerPrefs.SetInt("ShotsTaken", shotsTaken);
             SceneManager.LoadScene("_Game_Over");
             //level = 0;
             //shotsTaken = 0;
